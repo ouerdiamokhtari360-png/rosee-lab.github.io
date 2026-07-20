@@ -342,6 +342,64 @@
   .p4{background:linear-gradient(180deg,var(--blush),var(--lilac));}
   .p5{background:linear-gradient(160deg,var(--lilac),var(--mauve));}
   .p6{background:linear-gradient(200deg,var(--mauve),var(--blush));}
+
+  /* ---------- SLIDER ---------- */
+  .slider{
+    position:absolute;inset:0;
+    display:flex;
+    transition:transform .45s ease;
+    height:100%;
+  }
+  .slide{
+    flex:0 0 100%;
+    width:100%;
+    height:100%;
+  }
+  .slide img, .slide video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .slider-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:2.4rem;height:2.4rem;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    font-family:var(--sans);
+    font-size:1rem;
+    z-index:5;
+    transition:background .2s ease;
+  }
+  .slider-arrow:hover{background:#fff;}
+  .slider-arrow.prev{left:.9rem;}
+  .slider-arrow.next{right:.9rem;}
+  .slider-dots{
+    position:absolute;
+    bottom:1rem;
+    left:0;right:0;
+    display:flex;
+    justify-content:center;
+    gap:.45rem;
+    z-index:5;
+  }
+  .slider-dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:rgba(20,17,22,.3);
+    border:none;
+    padding:0;
+    cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .slider-dot.active{background:var(--ink);transform:scale(1.3);}
+  .project-media[data-count="1"] .slider-arrow,
+  .project-media[data-count="1"] .slider-dots{display:none;}
   .project-num{
     font-family:var(--serif);
     font-style:italic;
@@ -549,7 +607,16 @@
 
       <div class="project">
         <div class="project-media p1">
-          <div class="placeholder-label">Add image here<br>— BEL·NCO product shot —</div>
+          <div class="slider">
+            <div class="slide"><img src="images/belnco-1.jpg" alt="BEL·NCO Pure Prickly Pear Oil on beige background"></div>
+            <div class="slide"><img src="images/belnco-2.jpg" alt="BEL·NCO Pure Prickly Pear Oil on marble"></div>
+            <div class="slide"><img src="images/belnco-3.jpg" alt="BEL·NCO Pure Prickly Pear Oil with prickly pear cactus"></div>
+            <div class="slide"><img src="images/belnco-4.jpg" alt="BEL·NCO oil applied to skin"></div>
+            <div class="slide"><img src="images/belnco-5.jpg" alt="BEL·NCO oil dripping from dropper"></div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">01</span>
@@ -561,43 +628,84 @@
 
       <div class="project">
         <div class="project-media p2">
-          <div class="placeholder-label">Add image here<br>— BYOMA SPF 30 —</div>
+          <div class="slider">
+            <div class="slide"><img src="images/byoma-1.jpg" alt="BYOMA Ultralight Face Fluid SPF 50 lifestyle collage"></div>
+            <div class="slide"><img src="images/byoma-2.jpg" alt="BYOMA SPF 50 with citrus fruit"></div>
+            <div class="slide"><img src="images/byoma-3.jpg" alt="BYOMA SPF 50 beach bag"></div>
+            <div class="slide"><img src="images/byoma-4.jpg" alt="BYOMA SPF 50 flat lay with sun hat"></div>
+            <div class="slide"><img src="images/byoma-5.jpg" alt="BYOMA SPF 50 barrier boosting sunscreen ad"></div>
+            <div class="slide"><img src="images/byoma-6.jpg" alt="BYOMA SPF 50 texture swatch"></div>
+            <div class="slide"><img src="images/byoma-7.jpg" alt="BYOMA SPF 50 application"></div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">02</span>
-          <h3>SPF 30</h3>
+          <h3>Ultralight Face Fluid SPF 50</h3>
           <div class="project-client">BYOMA</div>
-          <p>Product visual for a sun care essential, set in a pastel, minimalist world.</p>
+          <p>Product visuals for a barrier-boosting sunscreen, set across lifestyle, texture, and studio scenes.</p>
         </div>
       </div>
 
       <div class="project">
         <div class="project-media p3">
-          <div class="placeholder-label">Add image here<br>— Gloss collection —</div>
+          <div class="slider">
+            <div class="slide"><img src="images/gisou-1.jpg" alt="Gisou honey infused lip oil, three shades, knitted covers"></div>
+            <div class="slide"><img src="images/gisou-2.jpg" alt="Gisou honey infused lip oil, three bare bottles"></div>
+            <div class="slide"><img src="images/gisou-3.jpg" alt="Woman applying Gisou lip oil in a car"></div>
+            <div class="slide"><img src="images/gisou-4.jpg" alt="Gisou lip oil bottle with honey pouring"></div>
+            <div class="slide"><img src="images/gisou-5.jpg" alt="Gisou lip oil with dates and chocolate"></div>
+            <div class="slide"><img src="images/gisou-6.jpg" alt="Gisou lip oil with coffee beans"></div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">03</span>
-          <h3>Gloss Collection</h3>
-          <div class="project-client">3 shades</div>
-          <p>Packshot staging for a lip gloss range.</p>
+          <h3>Honey Infused Lip Oil</h3>
+          <div class="project-client">Gisou — 3 shades</div>
+          <p>Packshot staging and lifestyle scenes for a honey-infused lip oil range.</p>
         </div>
       </div>
 
       <div class="project">
         <div class="project-media p4">
-          <div class="placeholder-label">Add image here<br>— Arencia creams —</div>
+          <div class="slider">
+            <div class="slide"><img src="images/arencia-1.jpg" alt="Arencia Calendula Rice Mochi Cleanser texture"></div>
+            <div class="slide"><img src="images/arencia-2.jpg" alt="Arencia Fresh Green Rice Mochi Cleanser texture"></div>
+            <div class="slide"><img src="images/arencia-3.jpg" alt="Woman applying Arencia Rosehip Rice Mochi Cleanser"></div>
+            <div class="slide"><img src="images/arencia-4.jpg" alt="Arencia Rice Mochi Cleanser collection, three jars"></div>
+            <div class="slide"><img src="images/arencia-5.jpg" alt="Arencia Rosehip Rice Mochi Cleanser texture"></div>
+            <div class="slide"><img src="images/arencia-6.jpg" alt="Arencia Rice Mochi Cleanser textures with florals"></div>
+            <div class="slide"><img src="images/arencia-7.jpg" alt="Arencia Rice Mochi Cleanser collection on marble"></div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">04</span>
-          <h3>Cream Collection</h3>
-          <div class="project-client">Arencia</div>
-          <p>Product visuals for a collection of three cosmetic creams.</p>
+          <h3>Rice Mochi Cleanser</h3>
+          <div class="project-client">Arencia — 3 varieties</div>
+          <p>Product visuals for a collection of three rice mochi cleansers — rosehip, calendula, and fresh green.</p>
         </div>
       </div>
 
       <div class="project">
         <div class="project-media p5">
-          <div class="placeholder-label">Add image here<br>— Yara Lalafa perfume bottle —</div>
+          <div class="slider">
+            <div class="slide"><img src="images/yara-1.jpg" alt="Yara perfume bottle lifestyle flat lay"></div>
+            <div class="slide"><img src="images/yara-2.jpg" alt="Yara perfume bottle on pink satin"></div>
+            <div class="slide"><img src="images/yara-3.jpg" alt="Yara perfume bottle on a shelf"></div>
+            <div class="slide"><img src="images/yara-4.jpg" alt="Yara perfume bottle spraying mist"></div>
+            <div class="slide"><img src="images/yara-5.jpg" alt="Yara perfume bottle on a vanity table"></div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">05</span>
@@ -608,8 +716,15 @@
       </div>
 
       <div class="project">
-        <div class="project-media p6">
-          <div class="placeholder-label">Add image here<br>— Rosee Lab monogram —</div>
+        <div class="project-media p6" data-count="1">
+          <div class="slider">
+            <div class="slide"><!-- <img src="images/logo-1.jpg" alt="Rosee Lab monogram"> -->
+              <div class="placeholder-label">Add image here<br>— Rosee Lab monogram —</div>
+            </div>
+          </div>
+          <button class="slider-arrow prev" aria-label="Previous image">&#8249;</button>
+          <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
+          <div class="slider-dots"></div>
         </div>
         <div class="project-body">
           <span class="project-num">06</span>
@@ -648,5 +763,56 @@
   </div>
 </footer>
 
+<script>
+  // Generic slider: works for every .project-media / .hero-visual that contains
+  // a .slider with one or more .slide children. Add more <div class="slide">
+  // blocks in the HTML to add more photos — this script handles the rest.
+  document.querySelectorAll('.project-media, .hero-visual').forEach(function(container){
+    var slider = container.querySelector('.slider');
+    if(!slider) return;
+    var slides = slider.querySelectorAll('.slide');
+    var count = slides.length;
+    container.setAttribute('data-count', count);
+    if(count <= 1) return;
+
+    var dotsWrap = container.querySelector('.slider-dots');
+    var prevBtn = container.querySelector('.slider-arrow.prev');
+    var nextBtn = container.querySelector('.slider-arrow.next');
+    var index = 0;
+
+    if(dotsWrap){
+      slides.forEach(function(_, i){
+        var dot = document.createElement('button');
+        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to image ' + (i+1));
+        dot.addEventListener('click', function(){ go(i); });
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    function go(i){
+      index = (i + count) % count;
+      slider.style.transform = 'translateX(-' + (index * 100) + '%)';
+      if(dotsWrap){
+        dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, di){
+          d.classList.toggle('active', di === index);
+        });
+      }
+    }
+
+    if(prevBtn) prevBtn.addEventListener('click', function(){ go(index - 1); });
+    if(nextBtn) nextBtn.addEventListener('click', function(){ go(index + 1); });
+
+    // touch swipe
+    var startX = null;
+    slider.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+    slider.addEventListener('touchend', function(e){
+      if(startX === null) return;
+      var diff = e.changedTouches[0].clientX - startX;
+      if(Math.abs(diff) > 40) go(diff > 0 ? index - 1 : index + 1);
+      startX = null;
+    });
+  });
+</script>
 </body>
 </html>
