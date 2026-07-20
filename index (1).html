@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosee Lab — AI Product Visuals</title>
+<meta name="description" content="Rosee Lab — AI-generated product visuals for cosmetics, perfumery and skincare. No studio. No photographer. Just results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141116;
+    --paper:#ffffff;
+    --paper-warm:#faf7f8;
+    --blush:#f4cdd6;
+    --mauve:#d9bfe0;
+    --lilac:#e7d6ee;
+    --line: rgba(20,17,22,0.14);
+    --serif: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxw: 1280px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--blush);color:var(--ink);}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:.62;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.95rem 2.1rem;
+    border-radius:999px;
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:.74rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    border:1.5px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    transition:background .25s ease, color .25s ease, transform .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--ink);color:var(--paper);}
+  .btn-solid:hover{background:#000;}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.15rem 1.5rem;
+  }
+  .wordmark{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:1rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .nav-links{
+    display:flex;
+    gap:2.4rem;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links a{
+    font-size:.74rem;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    opacity:.75;
+    transition:opacity .2s ease;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:1.6rem;}
+  .nav-cta .btn{padding:.65rem 1.5rem;font-size:.68rem;}
+  .burger{
+    display:none;
+    background:none;border:none;cursor:pointer;
+    width:34px;height:34px;
+    flex-direction:column;justify-content:center;gap:6px;
+  }
+  .burger span{display:block;width:100%;height:2px;background:var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:4.5rem 1.5rem 0;
+    max-width:var(--maxw);
+    margin:0 auto;
+    text-align:center;
+  }
+  .hero .eyebrow{display:block;margin-bottom:1.4rem;}
+  .hero-title{
+    font-family:var(--serif);
+    font-weight:500;
+    line-height:.92;
+    letter-spacing:-.01em;
+    font-size:clamp(3.2rem, 11vw, 9rem);
+    margin:0;
+    white-space:nowrap;
+  }
+  .hero-sub{
+    font-family:var(--sans);
+    font-size:clamp(.95rem, 1.6vw, 1.15rem);
+    font-weight:500;
+    letter-spacing:.02em;
+    color:var(--ink);
+    opacity:.7;
+    max-width:34ch;
+    margin:1.4rem auto 2.4rem;
+  }
+  .hero-visual{
+    position:relative;
+    margin-top:1rem;
+    aspect-ratio:16/8.2;
+    max-height:64vh;
+    border-radius:2px;
+    overflow:hidden;
+    background:
+      radial-gradient(60% 90% at 20% 30%, var(--lilac), transparent 60%),
+      radial-gradient(55% 80% at 80% 70%, var(--blush), transparent 60%),
+      linear-gradient(135deg, var(--mauve), var(--blush) 60%, var(--lilac));
+  }
+  .hero-visual .placeholder-label{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:.6rem;
+    font-family:var(--sans);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:rgba(20,17,22,.55);
+    text-align:center;
+    padding:1rem;
+  }
+  .hero-visual .placeholder-label span{opacity:.8;}
+  .hero-buttons{
+    margin-top:2.2rem;
+    display:flex;
+    gap:1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  /* marquee strip */
+  .marquee{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:.9rem 0;
+    margin-top:3.5rem;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation:scroll 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.05rem;
+    letter-spacing:.02em;
+    margin:0 1.4rem;
+    opacity:.55;
+  }
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  section{padding:6.5rem 1.5rem;}
+  .wrap{max-width:var(--maxw);margin:0 auto;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:4rem;
+    align-items:start;
+  }
+  .about-head .eyebrow{margin-bottom:1rem;display:block;}
+  .about-head h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2rem, 4vw, 2.8rem);
+    line-height:1.1;
+    margin:0;
+  }
+  .about-body p{
+    font-size:1.05rem;
+    line-height:1.75;
+    margin:0 0 1.6rem;
+    max-width:56ch;
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2rem;
+    margin-top:2.4rem;
+    padding-top:2.2rem;
+    border-top:1px solid var(--line);
+  }
+  .stat-num{
+    font-family:var(--serif);
+    font-size:clamp(2rem,4vw,2.6rem);
+    line-height:1;
+  }
+  .stat-label{
+    margin-top:.5rem;
+    font-size:.68rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    opacity:.6;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills{background:var(--paper-warm);}
+  .skills-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 3.2rem;
+  }
+  .skills-head .eyebrow{display:block;margin-bottom:1rem;}
+  .skills-head h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2rem,4vw,2.8rem);
+    margin:0;
+    line-height:1.15;
+  }
+  .skills-list{
+    max-width:900px;
+    margin:0 auto;
+    border-top:1px solid var(--line);
+  }
+  .skill-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1.5rem;
+    padding:1.6rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .skill-name{
+    font-family:var(--serif);
+    font-size:clamp(1.15rem,2.4vw,1.55rem);
+  }
+  .skill-tag{
+    font-size:.68rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    opacity:.5;
+    white-space:nowrap;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 4rem;
+  }
+  .projects-head .eyebrow{display:block;margin-bottom:1rem;}
+  .projects-head h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2rem,4vw,2.8rem);
+    margin:0;
+    line-height:1.15;
+  }
+  .project{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3.5rem;
+    align-items:center;
+    padding:3.5rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project:first-of-type{padding-top:0;}
+  .project:nth-of-type(even) .project-media{order:2;}
+  .project-media{
+    aspect-ratio:4/5;
+    border-radius:2px;
+    position:relative;
+    overflow:hidden;
+  }
+  .project-media .placeholder-label{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:1.2rem;
+    font-size:.68rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgba(20,17,22,.55);
+  }
+  .p1{background:linear-gradient(160deg,var(--blush),var(--mauve));}
+  .p2{background:linear-gradient(200deg,var(--lilac),var(--blush));}
+  .p3{background:linear-gradient(140deg,var(--mauve),var(--lilac));}
+  .p4{background:linear-gradient(180deg,var(--blush),var(--lilac));}
+  .p5{background:linear-gradient(160deg,var(--lilac),var(--mauve));}
+  .p6{background:linear-gradient(200deg,var(--mauve),var(--blush));}
+  .project-num{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:.95rem;
+    opacity:.5;
+    margin-bottom:1rem;
+    display:block;
+  }
+  .project-body h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.6rem,3.4vw,2.2rem);
+    margin:0 0 .3rem;
+    line-height:1.15;
+  }
+  .project-client{
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    opacity:.55;
+    margin-bottom:1.2rem;
+  }
+  .project-body p{
+    font-size:1rem;
+    line-height:1.7;
+    max-width:44ch;
+    margin:0;
+    opacity:.85;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--ink);
+    color:var(--paper);
+    text-align:center;
+  }
+  .contact .eyebrow{color:var(--paper);opacity:.55;display:block;margin-bottom:1.4rem;}
+  .contact h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.4rem,7vw,4.4rem);
+    line-height:1.08;
+    margin:0 0 1.6rem;
+  }
+  .contact p{
+    font-size:1.05rem;
+    opacity:.72;
+    max-width:44ch;
+    margin:0 auto 2.6rem;
+    line-height:1.7;
+  }
+  .contact .btn-solid{background:var(--paper);color:var(--ink);}
+  .contact .btn-solid:hover{background:var(--blush);}
+  .contact .btn-ghost{border-color:var(--paper);}
+  .contact .btn-ghost:hover{background:var(--paper);color:var(--ink);}
+  .contact-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:3.5rem 1.5rem 2.5rem;}
+  .footer-word{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(3rem,13vw,10rem);
+    line-height:.85;
+    letter-spacing:-.01em;
+    text-align:center;
+    margin:0 0 2.5rem;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .footer-bottom{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:1rem;
+    padding-top:1.6rem;
+    border-top:1px solid var(--line);
+    font-size:.72rem;
+    letter-spacing:.06em;
+    opacity:.55;
+  }
+  .footer-links{display:flex;gap:1.6rem;}
+  .footer-links a:hover{opacity:.6;}
+
+  @media (max-width: 860px){
+    .nav-links{display:none;}
+    .nav-cta .btn{display:none;}
+    .burger{display:flex;}
+    .about{grid-template-columns:1fr;gap:2.5rem;}
+    .stats{grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .project, .project:nth-of-type(even) .project-media{
+      grid-template-columns:1fr;
+      order:0;
+    }
+    .project{gap:1.5rem;}
+    .hero-title{white-space:normal;}
+    section{padding:4rem 1.25rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="wordmark">Rosee Lab</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-solid" href="https://instagram.com/rosee_lab" target="_blank" rel="noopener">DM to book</a>
+    </div>
+    <button class="burger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-bottom:0;">
+    <span class="eyebrow">AI Product Visuals Artist</span>
+    <h1 class="hero-title">Rosee Lab</h1>
+    <p class="hero-sub">No studio. No photographer. Just results.</p>
+    <div class="hero-visual">
+      <div class="placeholder-label">
+        <span>Add image here</span>
+        <span>— hero visual / signature product render —</span>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <a class="btn btn-solid" href="#projects">View projects</a>
+      <a class="btn btn-ghost" href="#contact">Book a project</a>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>AI Packshots</span><span>·</span><span>Cosmetics</span><span>·</span><span>Skincare</span><span>·</span><span>Perfumery</span><span>·</span>
+      <span>AI Packshots</span><span>·</span><span>Cosmetics</span><span>·</span><span>Skincare</span><span>·</span><span>Perfumery</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about wrap">
+    <div class="about-head">
+      <span class="eyebrow">About</span>
+      <h2>Product visuals,<br>built with AI.</h2>
+    </div>
+    <div class="about-body">
+      <p>Rosee Lab is a creator specialized in AI-assisted product visual generation. She designs packshots and product staging — cosmetics, perfumery, skincare — without a studio or a photoshoot, delivering a high-end result built for social media and e-commerce.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills">
+    <div class="wrap">
+      <div class="skills-head">
+        <span class="eyebrow">Skills</span>
+        <h2>What Rosee Lab brings to a project</h2>
+      </div>
+      <div class="skills-list">
+        <div class="skill-row">
+          <span class="skill-name">AI product visual generation</span>
+          <span class="skill-tag">Core craft</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Art direction &amp; packshot staging</span>
+          <span class="skill-tag">Creative</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Brand identity design — logo, moodboard</span>
+          <span class="skill-tag">Branding</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Post-production &amp; image retouching</span>
+          <span class="skill-tag">Finishing</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Format adaptation — Instagram, Threads</span>
+          <span class="skill-tag">Social</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="projects-head">
+        <span class="eyebrow">Selected work</span>
+        <h2>Projects</h2>
+      </div>
+
+      <div class="project">
+        <div class="project-media p1">
+          <div class="placeholder-label">Add image here<br>— BEL·NCO product shot —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">01</span>
+          <h3>Pure Prickly Pear Oil</h3>
+          <div class="project-client">BEL·NCO</div>
+          <p>Packshot visual and storyboard for a prickly pear seed oil.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-media p2">
+          <div class="placeholder-label">Add image here<br>— BYOMA SPF 30 —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">02</span>
+          <h3>SPF 30</h3>
+          <div class="project-client">BYOMA</div>
+          <p>Product visual for a sun care essential, set in a pastel, minimalist world.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-media p3">
+          <div class="placeholder-label">Add image here<br>— Gloss collection —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">03</span>
+          <h3>Gloss Collection</h3>
+          <div class="project-client">3 shades</div>
+          <p>Packshot staging for a lip gloss range.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-media p4">
+          <div class="placeholder-label">Add image here<br>— Arencia creams —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">04</span>
+          <h3>Cream Collection</h3>
+          <div class="project-client">Arencia</div>
+          <p>Product visuals for a collection of three cosmetic creams.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-media p5">
+          <div class="placeholder-label">Add image here<br>— Yara Lalafa perfume bottle —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">05</span>
+          <h3>Perfume Bottle</h3>
+          <div class="project-client">Yara Lalafa</div>
+          <p>An elegant packshot for a perfume bottle, set in a powder-pink world.</p>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-media p6">
+          <div class="placeholder-label">Add image here<br>— Rosee Lab monogram —</div>
+        </div>
+        <div class="project-body">
+          <span class="project-num">06</span>
+          <h3>Brand Identity</h3>
+          <div class="project-client">Rosee Lab</div>
+          <p>Design of the "RL" monogram and the visual identity for Rosee Lab itself.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's create<br>your next visual.</h2>
+      <p>Available for collaborations and quote-based projects. Cosmetics, perfumery, skincare — send a brief or DM to book.</p>
+      <div class="contact-buttons">
+        <a class="btn btn-solid" href="mailto:roseelab2@gmail.com">roseelab2@gmail.com</a>
+        <a class="btn btn-ghost" href="https://instagram.com/rosee_lab" target="_blank" rel="noopener">@rosee_lab</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-word">Rosee Lab</div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Rosee Lab</span>
+    <div class="footer-links">
+      <a href="mailto:roseelab2@gmail.com">Email</a>
+      <a href="https://instagram.com/rosee_lab" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
