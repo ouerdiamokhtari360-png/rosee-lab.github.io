@@ -505,7 +505,21 @@
   @media (prefers-reduced-motion: reduce){
     .marquee-track{animation:none;}
     html{scroll-behavior:auto;}
+    .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
   }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.2s;}
 </style>
 </head>
 <body>
@@ -553,11 +567,11 @@
 
   <!-- ABOUT -->
   <section id="about" class="about wrap">
-    <div class="about-head">
+    <div class="about-head reveal">
       <span class="eyebrow">About</span>
       <h2>Product visuals,<br>built with AI.</h2>
     </div>
-    <div class="about-body">
+    <div class="about-body reveal reveal-delay-1">
       <p>Rosee Lab is a creator specialized in AI-assisted product visual generation. She designs packshots and product staging — cosmetics, perfumery, skincare — without a studio or a photoshoot, delivering a high-end result built for social media and e-commerce.</p>
     </div>
   </section>
@@ -565,11 +579,11 @@
   <!-- SKILLS -->
   <section id="skills" class="skills">
     <div class="wrap">
-      <div class="skills-head">
+      <div class="skills-head reveal">
         <span class="eyebrow">Skills</span>
         <h2>What Rosee Lab brings to a project</h2>
       </div>
-      <div class="skills-list">
+      <div class="skills-list reveal reveal-delay-1">
         <div class="skill-row">
           <span class="skill-name">AI product visual generation</span>
           <span class="skill-tag">Core craft</span>
@@ -597,12 +611,12 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
-      <div class="projects-head">
+      <div class="projects-head reveal">
         <span class="eyebrow">Selected work</span>
         <h2>Projects</h2>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p1">
           <div class="slider">
             <div class="slide"><img src="images/belnco-1.jpg" alt="BEL·NCO Pure Prickly Pear Oil on beige background"></div>
@@ -623,7 +637,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p2">
           <div class="slider">
             <div class="slide"><img src="images/byoma-1.jpg" alt="BYOMA Ultralight Face Fluid SPF 50 lifestyle collage"></div>
@@ -646,7 +660,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p3">
           <div class="slider">
             <div class="slide"><img src="images/gisou-1.jpg" alt="Gisou honey infused lip oil, three shades, knitted covers"></div>
@@ -668,7 +682,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p4">
           <div class="slider">
             <div class="slide"><img src="images/arencia-1.jpg" alt="Arencia Calendula Rice Mochi Cleanser texture"></div>
@@ -691,7 +705,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p5">
           <div class="slider">
             <div class="slide"><img src="images/yara-1.jpg" alt="Yara perfume bottle lifestyle flat lay"></div>
@@ -712,7 +726,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project reveal">
         <div class="project-media p6" data-count="1">
           <div class="slider">
             <div class="slide"><img src="images/rl-monogram.jpeg" alt="Rosee Lab monogram"></div>
@@ -734,7 +748,7 @@
 
   <!-- CONTACT -->
   <section id="contact" class="contact">
-    <div class="wrap">
+    <div class="wrap reveal">
       <span class="eyebrow">Contact</span>
       <h2>Let's create<br>your next visual.</h2>
       <p>Available for collaborations and quote-based projects. Cosmetics, perfumery, skincare — send a brief or DM to book.</p>
@@ -808,6 +822,22 @@
       startX = null;
     });
   });
+
+  // Scroll reveal: fade + rise elements into view as they enter the viewport
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && revealEls.length){
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
 </script>
 </body>
 </html>
