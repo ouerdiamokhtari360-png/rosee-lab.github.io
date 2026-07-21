@@ -10,13 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#141116;
+    --ink:#201E20;
     --paper:#ffffff;
-    --paper-warm:#faf7f8;
-    --blush:#f4cdd6;
-    --mauve:#d9bfe0;
-    --lilac:#e7d6ee;
-    --line: rgba(20,17,22,0.14);
+    --paper-warm:#FBF5F7;
+    --blush:#E15585;
+    --mauve:#9C3E64;
+    --lilac:#4E2839;
+    --c1:#E15585;
+    --c2:#C24C79;
+    --c3:#9C3E64;
+    --c4:#74314E;
+    --c5:#4E2839;
+    --c6:#201E20;
+    --line: rgba(32,30,32,0.14);
     --serif: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
     --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --maxw: 1280px;
@@ -26,7 +32,9 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--paper);
+    background:linear-gradient(180deg, var(--c1) 0%, var(--c2) 20%, var(--c3) 42%, var(--c4) 62%, var(--c5) 82%, var(--c6) 100%);
+    background-attachment:fixed;
+    background-size:100% 100%;
     color:var(--ink);
     font-family:var(--sans);
     -webkit-font-smoothing:antialiased;
@@ -160,9 +168,9 @@
     border-radius:2px;
     overflow:hidden;
     background:
-      radial-gradient(60% 90% at 20% 30%, var(--lilac), transparent 60%),
-      radial-gradient(55% 80% at 80% 70%, var(--blush), transparent 60%),
-      linear-gradient(135deg, var(--mauve), var(--blush) 60%, var(--lilac));
+      radial-gradient(60% 90% at 20% 30%, var(--c2), transparent 60%),
+      radial-gradient(55% 80% at 80% 70%, var(--c1), transparent 60%),
+      linear-gradient(135deg, var(--c3), var(--c1) 60%, var(--c4));
   }
   .hero-visual .placeholder-label{
     position:absolute;inset:0;
@@ -214,6 +222,15 @@
   section{padding:6.5rem 1.5rem;}
   .wrap{max-width:var(--maxw);margin:0 auto;}
 
+  /* ---------- GLASS CARDS (lisibilité sur le dégradé) ---------- */
+  .glass{
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,0.4);
+  }
+
   /* ---------- ABOUT ---------- */
   .about{
     display:grid;
@@ -257,7 +274,7 @@
   }
 
   /* ---------- SKILLS ---------- */
-  .skills{background:var(--paper-warm);}
+  .skills{}
   .skills-head{
     text-align:center;
     max-width:640px;
@@ -336,12 +353,12 @@
     text-transform:uppercase;
     color:rgba(20,17,22,.55);
   }
-  .p1{background:linear-gradient(160deg,var(--blush),var(--mauve));}
-  .p2{background:linear-gradient(200deg,var(--lilac),var(--blush));}
-  .p3{background:linear-gradient(140deg,var(--mauve),var(--lilac));}
-  .p4{background:linear-gradient(180deg,var(--blush),var(--lilac));}
-  .p5{background:linear-gradient(160deg,var(--lilac),var(--mauve));}
-  .p6{background:linear-gradient(200deg,var(--mauve),var(--blush));}
+  .p1{background:linear-gradient(160deg,var(--c1),var(--c2));}
+  .p2{background:linear-gradient(200deg,var(--c2),var(--c3));}
+  .p3{background:linear-gradient(140deg,var(--c3),var(--c4));}
+  .p4{background:linear-gradient(180deg,var(--c4),var(--c5));}
+  .p5{background:linear-gradient(160deg,var(--c5),var(--c6));}
+  .p6{background:linear-gradient(200deg,var(--c6),var(--c5));}
 
   /* ---------- SLIDER ---------- */
   .slider{
@@ -432,7 +449,9 @@
 
   /* ---------- CONTACT ---------- */
   .contact{
-    background:var(--ink);
+    background:rgba(32,30,32,0.55);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
     color:var(--paper);
     text-align:center;
   }
@@ -452,13 +471,13 @@
     line-height:1.7;
   }
   .contact .btn-solid{background:var(--paper);color:var(--ink);}
-  .contact .btn-solid:hover{background:var(--blush);}
+  .contact .btn-solid:hover{background:var(--c1);color:var(--paper);}
   .contact .btn-ghost{border-color:var(--paper);}
   .contact .btn-ghost:hover{background:var(--paper);color:var(--ink);}
   .contact-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 
   /* ---------- FOOTER ---------- */
-  footer{padding:3.5rem 1.5rem 2.5rem;}
+  footer{padding:3.5rem 1.5rem 2.5rem;color:var(--paper);}
   .footer-word{
     font-family:var(--serif);
     font-weight:500;
@@ -469,6 +488,7 @@
     margin:0 0 2.5rem;
     white-space:nowrap;
     overflow:hidden;
+    color:var(--paper);
   }
   .footer-bottom{
     max-width:var(--maxw);
@@ -479,10 +499,10 @@
     flex-wrap:wrap;
     gap:1rem;
     padding-top:1.6rem;
-    border-top:1px solid var(--line);
+    border-top:1px solid rgba(255,255,255,0.25);
     font-size:.72rem;
     letter-spacing:.06em;
-    opacity:.55;
+    opacity:.75;
   }
   .footer-links{display:flex;gap:1.6rem;}
   .footer-links a:hover{opacity:.6;}
@@ -566,7 +586,7 @@
   </div>
 
   <!-- ABOUT -->
-  <section id="about" class="about wrap">
+  <section id="about" class="about wrap glass" style="padding:3.5rem;margin:0 1.5rem;max-width:calc(var(--maxw) - 3rem);">
     <div class="about-head reveal">
       <span class="eyebrow">About</span>
       <h2>Product visuals,<br>built with AI.</h2>
@@ -578,7 +598,7 @@
 
   <!-- SKILLS -->
   <section id="skills" class="skills">
-    <div class="wrap">
+    <div class="wrap glass" style="padding:3.5rem;">
       <div class="skills-head reveal">
         <span class="eyebrow">Skills</span>
         <h2>What Rosee Lab brings to a project</h2>
@@ -611,7 +631,7 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
-      <div class="projects-head reveal">
+      <div class="projects-head reveal glass" style="padding:3rem;">
         <span class="eyebrow">Selected work</span>
         <h2>Projects</h2>
       </div>
@@ -629,7 +649,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">01</span>
           <h3>Pure Prickly Pear Oil</h3>
           <div class="project-client">BEL·NCO</div>
@@ -652,7 +672,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">02</span>
           <h3>Ultralight Face Fluid SPF 50</h3>
           <div class="project-client">BYOMA</div>
@@ -674,7 +694,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">03</span>
           <h3>Honey Infused Lip Oil</h3>
           <div class="project-client">Gisou — 3 shades</div>
@@ -697,7 +717,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">04</span>
           <h3>Rice Mochi Cleanser</h3>
           <div class="project-client">Arencia — 3 varieties</div>
@@ -718,7 +738,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">05</span>
           <h3>Perfume Bottle</h3>
           <div class="project-client">Yara Lalafa</div>
@@ -735,7 +755,7 @@
           <button class="slider-arrow next" aria-label="Next image">&#8250;</button>
           <div class="slider-dots"></div>
         </div>
-        <div class="project-body">
+        <div class="project-body glass" style="padding:2rem;">
           <span class="project-num">06</span>
           <h3>Brand Identity</h3>
           <div class="project-client">Rosee Lab</div>
